@@ -8,7 +8,7 @@ module.exports = function (role) {
     try {
       const token = req.headers.authorization.split(" ")[1];
       if (!token) {
-        res.status(401).json({ message: "Пользователь не авторизован" });
+        res.status(401).json({ message: "Пользователь не авторизован2" });
       }
       const decoded = jwt.verify(token, process.env.SECRET_KEY);
       if (decoded.role !== role) {
@@ -17,7 +17,7 @@ module.exports = function (role) {
       req.user = decoded;
       next();
     } catch (error) {
-      res.status(401).json({ message: "Пользователь не авторизован" });
+      res.status(401).json({ message: "Пользователь не авторизован3" });
     }
   };
 };
