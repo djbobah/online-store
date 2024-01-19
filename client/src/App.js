@@ -14,6 +14,7 @@ const App = observer(() => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     // setTimeout(() => {
+
     check()
       .then((data) => {
         user.setUser(true);

@@ -8,7 +8,7 @@ import { DEVICE_ROUTE } from "../utils/consts";
 const DeviceItem = ({ device }) => {
   let navigate = useNavigate();
   // console.log(navigate);
-  console.log(process.env.REACT_APP_API_URL + device.img);
+  // console.log(process.env.REACT_APP_API_URL + device.img);
   return (
     <Col
       md={3}

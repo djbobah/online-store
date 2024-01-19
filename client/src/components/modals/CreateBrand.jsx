@@ -1,8 +1,15 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useState } from "react";
+import { createBrand } from "../../http/deviceApi";
 
 const CreateBrand = ({ show, onHide }) => {
+  const [value, setValue] = useState("");
+  const addBrand = () => {
+    createBrand({ name: value }).then((data) => setValue(""));
+    onHide();
+  };
   return (
     <Modal
       // {...props}
@@ -26,7 +33,7 @@ const CreateBrand = ({ show, onHide }) => {
         <Button variant={"outline-danger"} onClick={onHide}>
           Закрыть
         </Button>
-        <Button variant={"outline-success"} onClick={onHide}>
+        <Button variant={"outline-success"} onClick={addBrand}>
           Добавить
         </Button>
       </Modal.Footer>

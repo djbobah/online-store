@@ -5,22 +5,32 @@ import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
 import bigStar from "../assets/big_star.png";
 import Button from "react-bootstrap/esm/Button";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { fetchOneDevice } from "../http/deviceApi";
 
 const DevicePage = () => {
-  const device = {
-    id: 1,
-    name: "Iphone 12 pro",
-    price: 100000,
-    rating: 5,
-    img: "https://purposechurch.com/wp-content/uploads/2017/10/fpo400x300.png",
-  };
-  const description = [
-    { id: 1, title: "Оперативня память", description: "5 гб" },
-    { id: 2, title: "Камера", description: "12 мп" },
-    { id: 3, title: "Процессор", description: "Пентиум 3" },
-    { id: 4, title: "Кол-во ядер", description: "2" },
-    { id: 5, title: "Аккумулятор", description: "4000" },
-  ];
+  const [device, setDevice] = useState({ info: [] });
+
+  const { id } = useParams();
+  // console.log(id);
+  useEffect(() => {
+    fetchOneDevice(id).then((data) => setDevice(data));
+  }, []);
+  // const device = {
+  //   id: 1,
+  //   name: "Iphone 12 pro",
+  //   price: 100000,
+  //   rating: 5,
+  //   img: "https://purposechurch.com/wp-content/uploads/2017/10/fpo400x300.png",
+  // };
+  // const description = [
+  //   { id: 1, title: "Оперативня память", description: "5 гб" },
+  //   { id: 2, title: "Камера", description: "12 мп" },
+  //   { id: 3, title: "Процессор", description: "Пентиум 3" },
+  //   { id: 4, title: "Кол-во ядер", description: "2" },
+  //   { id: 5, title: "Аккумулятор", description: "4000" },
+  // ];
   return (
     <Container className="mt-3">
       <Row>
@@ -28,7 +38,7 @@ const DevicePage = () => {
           <Image
             width={300}
             height={300}
-            src={device.img}
+            src={process.env.REACT_APP_API_URL + "/" + device.img}
             //process.env.REACT_APP_API_URL +
           />
         </Col>
@@ -66,7 +76,7 @@ const DevicePage = () => {
       </Row>
       <Row className="d-flex flex-column m-3">
         <h1>Характеристики:</h1>
-        {description.map((info, index) => (
+        {device.info.map((info, index) => (
           <Row
             key={info.id}
             style={{

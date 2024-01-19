@@ -29,7 +29,7 @@ const Auth = observer(() => {
       } else {
         data = await registration(email, password);
       }
-      user.setUser(data);
+      user.setUser(user);
       user.setIsAuth(true);
       navigate(SHOP_ROUTE);
     } catch (error) {

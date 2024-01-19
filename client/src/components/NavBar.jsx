@@ -15,7 +15,12 @@ const NavBar = observer(() => {
   const logOut = () => {
     user.setUser({});
     user.setIsAuth(false);
-    // navigate();
+    navigate(LOGIN_ROUTE);
+  };
+
+  const admin = () => {
+    console.log("user.isAuth, button", user.isAuth);
+    navigate(ADMIN_ROUTE);
   };
   return (
     <Navbar bg="dark" data-bs-theme="dark">
@@ -32,7 +37,7 @@ const NavBar = observer(() => {
           <Nav className="ml-auto">
             <Button
               variant={"outline-light"}
-              onClick={() => navigate(ADMIN_ROUTE)}
+              onClick={() => admin()} //navigate(ADMIN_ROUTE)
             >
               Админ панель
             </Button>

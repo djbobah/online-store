@@ -3,11 +3,12 @@ import { authRoutes, publicRoutes } from "../routes";
 import Shop from "../pages/Shop";
 import { useContext } from "react";
 import { Context } from "..";
+import { observer } from "mobx-react-lite";
 
-const AppRouter = () => {
+const AppRouter = observer(() => {
   const { user } = useContext(Context);
   // const isAuth = false;
-  console.log(user);
+  // console.log("user.isAuth,router", user.isAuth);
   return (
     <Routes>
       {user.isAuth &&
@@ -21,6 +22,6 @@ const AppRouter = () => {
       {/* <Route path="*" element={<Shop />} /> */}
     </Routes>
   );
-};
+});
 
 export default AppRouter;
