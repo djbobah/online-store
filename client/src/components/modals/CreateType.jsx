@@ -6,10 +6,12 @@ import { createType } from "../../http/deviceApi";
 
 const CreateType = ({ show, onHide }) => {
   const [value, setValue] = useState("");
+
   const addType = () => {
     createType({ name: value }).then((data) => setValue(""));
     onHide();
   };
+
   return (
     <Modal
       // {...props}
