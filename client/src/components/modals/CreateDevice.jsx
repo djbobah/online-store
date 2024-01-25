@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../..";
-import { fetchBrands, fetchTypes } from "../../http/deviceApi";
+import { createDevice, fetchBrands, fetchTypes } from "../../http/deviceApi";
 import { observer } from "mobx-react-lite";
 
 const CreateDevice = observer(({ show, onHide }) => {
@@ -39,7 +39,14 @@ const CreateDevice = observer(({ show, onHide }) => {
     setFile(e.target.files[0]);
   };
   const addDevice = () => {
-    console.log(info);
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("price", `${price}`);
+    formData.append("img", file);
+    formData.append("brandId", device.selectedBrand.id);
+    formData.append("typeId", device.selectedType.id);
+    formData.append("info", JSON.stringify(info));
+    createDevice(formData).then((data) => onHide());
   };
 
   return (
