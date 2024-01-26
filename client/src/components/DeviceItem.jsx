@@ -9,6 +9,7 @@ const DeviceItem = ({ device }) => {
   let navigate = useNavigate();
   // console.log(navigate);
   // console.log(process.env.REACT_APP_API_URL + device.img);
+  console.log(device);
   return (
     <Col
       md={3}
@@ -22,7 +23,7 @@ const DeviceItem = ({ device }) => {
           src={process.env.REACT_APP_API_URL + "/" + device.img}
         />
         <div className="text-black-50 mt-1 d-flex align-items-center justify-content-between">
-          <div>Samsung...</div>
+          <div>{device.brandId}</div>
           <div className="d-flex align-items-center ">
             <div>{device.rating}</div>
             <Image width={15} height={15} src={star} />
