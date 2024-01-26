@@ -12,17 +12,17 @@ import Spinner from "react-bootstrap/Spinner";
 const App = observer(() => {
   const { user } = useContext(Context);
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    // setTimeout(() => {
+  // useEffect(() => {
+  //   // setTimeout(() => {
 
-    check()
-      .then((data) => {
-        user.setUser(true);
-        user.setIsAuth(true);
-      })
-      .finally(() => setLoading(false));
-    // }, 1000);
-  }, []);
+  //   check()
+  //     .then((data) => {
+  //       user.setUser(true);
+  //       user.setIsAuth(true);
+  //     })
+  //     .finally(() => setLoading(false));
+  //   // }, 1000);
+  // }, []);
 
   if (loading) {
     return <Spinner animation={"grow"} />;
